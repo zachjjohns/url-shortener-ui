@@ -53,9 +53,17 @@ describe("URL Shortener", () => {
       .get('a').last().should('have.text', 'http://localhost:3001/useshorturl/3')
       .get('p').last().should('have.text', 'https://c.ndtvimg.com/2019-10/o52ta3a8_sweets-_625x300_26_October_19.jpg')
   })
+
+  it('Should display an error message when one or both inputs are missing', () => {
+    cy.get('button').click()
+      .get('.add-error').should('have.text', 'Please fill both inputs!')
+      .get('input[name="title"]').type('Sweet pic')
+      .get('button').click()
+      .get('.add-error').should('have.text', 'Please fill both inputs!')
+  })
 })
 
-describe('Error Handling', () => {
+describe('Fetch Error Handling', () => {
   it('Should render an error message when there is an error with fetching data', () => {
     cy.intercept('http://localhost:3001/api/v1/urls', {
       statusCode:404
