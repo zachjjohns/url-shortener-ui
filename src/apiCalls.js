@@ -10,9 +10,7 @@ export const postUrl = (newUrl) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      id: newUrl.id,
-      long_url: newUrl.long_url,
-      short_url: newUrl.short_url,
+      long_url: newUrl.urlToShorten,
       title: newUrl.title
     })
   })
