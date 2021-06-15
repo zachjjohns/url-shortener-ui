@@ -35,7 +35,7 @@ describe("URL Shortener", () => {
   it('Should render a Form with inputs and a button', () => {
     cy.get('input[name="title"]').invoke('attr', 'placeholder').should('contain', 'Title...')
       .get('input[name="urlToShorten"]').invoke('attr', 'placeholder').should('contain', 'URL to Shorten...')
-      .get('button').should('have.text', 'Shorten Please!')
+      .get('button').first().should('have.text', 'Shorten Please!')
   })
 
   it('Should reflect what the user types within the input fields', () => {
@@ -48,17 +48,17 @@ describe("URL Shortener", () => {
   it('Should render a new shortened URL after the user fills + submits form', () => {
     cy.get('input[name="title"]').type('Sweet pic')
       .get('input[name="urlToShorten"]').type('https://c.ndtvimg.com/2019-10/o52ta3a8_sweets-_625x300_26_October_19.jpg')
-      .get('button').click()
+      .get('button').first().click()
       .get('h3').last().should('have.text', 'Sweet pic')
       .get('a').last().should('have.text', 'http://localhost:3001/useshorturl/3')
       .get('p').last().should('have.text', 'https://c.ndtvimg.com/2019-10/o52ta3a8_sweets-_625x300_26_October_19.jpg')
   })
 
   it('Should display an error message when one or both inputs are missing', () => {
-    cy.get('button').click()
+    cy.get('button').first().click()
       .get('.add-error').should('have.text', 'Please fill both inputs!')
       .get('input[name="title"]').type('Sweet pic')
-      .get('button').click()
+      .get('button').first().click()
       .get('.add-error').should('have.text', 'Please fill both inputs!')
   })
 })
