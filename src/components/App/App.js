@@ -12,7 +12,13 @@ export class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = async() => {
+    try {
+      const fetchedUrls = await getUrls();
+      this.setState({urls: fetchedUrls})
+    } catch (e) {
+      this.setState({error: "Uh oh, could not get URL data."})
+    }
   }
 
   render() {
