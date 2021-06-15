@@ -29,4 +29,10 @@ describe("URL Shortener", () => {
     cy.get('h3').last().should('have.text', 'Another cool photo')
     cy.get('a').last().should('have.text', 'http://localhost:3001/useshorturl/2')
   })
+
+  it('Should render a Form with inputs and a button', () => {
+    cy.get('input[name="title"]').invoke('attr', 'placeholder').should('contain', 'Title...')
+    cy.get('input[name="urlToShorten"]').invoke('attr', 'placeholder').should('contain', 'URL to Shorten...')
+    cy.get('button').should('have.text', 'Shorten Please!')
+  })
 })
