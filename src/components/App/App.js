@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { getUrls, postUrl } from '../../apiCalls';
+import { deleteUrl, getUrls, postUrl } from '../../apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
@@ -25,6 +25,13 @@ export class App extends Component {
     postUrl(newUrl);
     this.setState({ urls: [...this.state.urls, newUrl] })
   }
+  
+  removeUrl = (event, id) => {
+    event.preventDefault();
+    deleteUrl(id);
+    const filteredUrls = this.state.urls.filter(url => url.id !== id)
+    this.setState({ urls: filteredUrls })
+  }
 
   render() {
     return (
@@ -34,7 +41,7 @@ export class App extends Component {
           <UrlForm urls={this.state.urls} addUrl={this.addUrl}/>
         </header>
         <h2 className="error">{this.state.error}</h2>
-        <UrlContainer urls={this.state.urls}/>
+        <UrlContainer urls={this.state.urls} removeUrl={this.removeUrl}/>
       </main>
     );
   }

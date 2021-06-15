@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { postUrl } from '../../apiCalls';
 
 class UrlForm extends Component {
   constructor(props) {
@@ -22,6 +21,7 @@ class UrlForm extends Component {
       return
     }
     const newUrl = {
+      id: this.props.urls.length+1,
       short_url: `http://localhost:3001/useshorturl/${this.props.urls.length+1}`,
       long_url: this.state.urlToShorten,
       ...this.state
