@@ -35,4 +35,11 @@ describe("URL Shortener", () => {
     cy.get('input[name="urlToShorten"]').invoke('attr', 'placeholder').should('contain', 'URL to Shorten...')
     cy.get('button').should('have.text', 'Shorten Please!')
   })
+
+  it('Should reflect what the user types within the input fields', () => {
+    cy.get('input[name="title"]').type('Sweet pic')
+      .should('have.value', 'Sweet pic')
+    cy.get('input[name="urlToShorten"]').type('https://c.ndtvimg.com/2019-10/o52ta3a8_sweets-_625x300_26_October_19.jpg')
+      .should('have.value', 'https://c.ndtvimg.com/2019-10/o52ta3a8_sweets-_625x300_26_October_19.jpg')
+  })
 })
