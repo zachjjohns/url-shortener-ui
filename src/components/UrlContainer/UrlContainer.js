@@ -8,7 +8,7 @@ const UrlContainer = ({urls, removeUrl}) => {
         <h3>{url.title}</h3>
         <a href={url.short_url} target="blank">{url.short_url}</a>
         <p>{url.long_url}</p>
-        <button onClick={(event) => removeUrl(event, url.id)}>Delete Me</button>
+        <button className="delete-button" onClick={(event) => removeUrl(event, url.id)}>Delete Me</button>
       </div>
     )
   });
