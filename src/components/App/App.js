@@ -15,9 +15,9 @@ export class App extends Component {
   componentDidMount = async() => {
     try {
       const fetchedUrls = await getUrls();
-      this.setState({urls: fetchedUrls})
+      this.setState({ urls: fetchedUrls.urls })
     } catch (e) {
-      this.setState({error: "Uh oh, could not get URL data."})
+      this.setState({ error: "Uh oh, could not get URL data." })
     }
   }
 
