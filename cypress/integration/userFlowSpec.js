@@ -54,3 +54,14 @@ describe("URL Shortener", () => {
       .get('p').last().should('have.text', 'https://c.ndtvimg.com/2019-10/o52ta3a8_sweets-_625x300_26_October_19.jpg')
   })
 })
+
+describe('Error Handling', () => {
+  it('Should render an error message when there is an error with fetching data', () => {
+    cy.intercept('http://localhost:3001/api/v1/urls', {
+      statusCode:404
+    })
+      .visit('http://localhost:3000')
+      .get('.error')
+      .should('have.text', 'Uh oh, could not get URL data.')
+  })
+})
